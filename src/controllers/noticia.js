@@ -46,13 +46,35 @@ exports.post = (req, res, next) => {
 };
 
 exports.put = (req, res, next) => {
-    const id = req.params.id;
-    res.status(200).send({
-        id: id,
-        usuario: req.body
+    Noticia.findByIdAndUpdate(req.params.id, {
+        $set: {
+            TituloNoticia: req.body.TituloNoticia,
+            TituloAuxiliar: req.body.TituloAuxiliar,
+            Lide: req.body.Lide,
+            CorpoNoticia: req.body.CorpoNoticia
+        }
+    }).then(p => {
+        res.status(201).send({
+            message: "Noticia atualizado com sucesso!"
+        });
+    }).catch(e => {
+        res.status(400).send({
+            message: "Falha ao atualizar a noticia !",
+            data: e
+        });
     });
 };
 
 exports.delete = (req, res, next) => {
-    res.status(200).send(req.body);
+    Noticia.findByIdAndDelete(req.body.id)
+    .then(p => {
+        res.status(201).send({
+            message: "Noticia excluida com sucesso!"
+        });
+    }).catch(e => {
+        res.status(400).send({
+            message: "Falha ao deletar a noticia !",
+            data: e
+        });
+    });
 };
