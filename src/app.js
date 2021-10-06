@@ -13,12 +13,14 @@ mongoose.connect('mongodb+srv://hltv:hltv@cluster0.oucj3.mongodb.net/myFirstData
 
 /* ==> MODELS <== */
 const Jogador = require('./models/jogador');
+const Noticia = require('./models/noticia');
 /* ==> MODELS <== */
 
 /* ==> CARREGAR ROTAS <== */
 const indexRoute = require('./routes/index');
 const userRoute = require('./routes/usuario');
 const jogadorRoute = require('./routes/jogador');
+const noticiaRoute = require('./routes/noticia');
 /* ==> CARREGAR ROTAS <== */
 
 app.use(bodyParser.json());
@@ -27,5 +29,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', indexRoute);
 app.use('/usuario', userRoute);
 app.use('/jogador', jogadorRoute);
+app.use('/noticia', noticiaRoute);
 
 module.exports = app;

@@ -1,11 +1,11 @@
 'use strict'
 
 const mongoose = require('mongoose');
-const Jogador = mongoose.model('Jogador');
+const Noticia = mongoose.model('Noticia');
 
 exports.get = (req, res, next) => {
-    Jogador.
-    find({}, 'NomeJogador TimeAtual VezesTop30 Instagram Twitter Twitch')
+    Noticia.
+    find({}, 'TituloNoticia TituloAuxiliar Lide CorpoNoticia')
     .then(data => {
         res.status(200).send(data);
     }).catch(e => {
@@ -14,8 +14,8 @@ exports.get = (req, res, next) => {
 };
 
 exports.getById = (req, res, next) => {
-    Jogador.
-    findById(req.params.id, 'NomeJogador TimeAtual VezesTop30 Instagram Twitter Twitch')
+    Noticia.
+    findById(req.params.id, 'TituloNoticia TituloAuxiliar Lide CorpoNoticia')
     .then(data => {
         res.status(200).send(data);
     }).catch(e => {
@@ -23,11 +23,11 @@ exports.getById = (req, res, next) => {
     });
 };
 
-exports.getByNomeTime = (req, res, next) => {
-    Jogador.
+exports.getByTituloNoticia = (req, res, next) => {
+    Noticia.
     find({
-        NomeTime: req.params.id, },
-        'NomeJogador TimeAtual VezesTop30 Instagram Twitter Twitch'
+        TituloNoticia: req.params.TituloNoticia, 
+    }, 'TituloNoticia TituloAuxiliar Lide CorpoNoticia'
     )
     .then(data => {
         res.status(200).send(data);
@@ -37,11 +37,11 @@ exports.getByNomeTime = (req, res, next) => {
 };
 
 exports.post = (req, res, next) => {
-    var jogador = new Jogador(req.body);
-    jogador.save().then(p => {
-        res.status(201).send({ message: 'Jogador cadastrado com sucesso!' });
+    var noticia = new Noticia(req.body);
+    noticia.save().then(p => {
+        res.status(201).send({ message: 'Noticia cadastrada com sucesso!' });
     }).catch(e => {
-        res.status(400).send({ message: 'Falha ao cadastrar o jogador', data: e });
+        res.status(400).send({ message: 'Falha ao cadastrar a noticia', data: e });
     });
 };
 
