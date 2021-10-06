@@ -1,5 +1,4 @@
 # API HLTV
-First step 
-  npm install;
+First step: npm install;
   
  
