@@ -28,7 +28,7 @@ exports.getById = async (req, res, next) => {
 
 exports.getByNomeUsuario = async (req, res, next) => {
     try {
-        var data = await repository.getByNomeUsuario(req.params.NomeUsario);
+        var data = await repository.getByNomeUsuario(req.params.NomeUsuario);
         res.status(200).send(data);
     } catch (e) {
         res.status(500).send({
@@ -66,7 +66,7 @@ exports.delete = async (req, res, next) => {
         repository.delete(req.body.id)
     .then(p => {
         res.status(201).send({
-            message: "Usuáio excluido com sucesso!"
+            message: "Usuário excluido com sucesso!"
         });
     });
     } catch (e) {
