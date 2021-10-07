@@ -3,12 +3,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const config = require('./config');
 
 const app = express();
 const router = express.Router();
 
 // CONEXÃO COM O BANCO
-mongoose.connect('mongodb+srv://hltv:hltv@cluster0.oucj3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect(config.connectionString);
 // CONEXÃO COM O BANCO
 
 /* ==> MODELS <== */
