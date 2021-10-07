@@ -3,31 +3,34 @@
 const mongoose = require('mongoose');
 const Jogador = mongoose.model('Jogador');
 
-exports.get = () => {
-    return Jogador
+exports.get = async () => {
+    const res = await Jogador
         .find({}, 'NomeJogador TimeAtual VezesTop30 Instagram Twitter Twitch');
+    return res;
 }
 
-exports.getById = (id) => {
-    return Jogador
+exports.getById = async (id) => {
+    const res = await Jogador
         .findById(id, 'NomeJogador TimeAtual VezesTop30 Instagram Twitter Twitch');
+    return res;
 }
 
-exports.getByNomeTime = (TimeAtual) => {
-    return Jogador.
-    find({
+exports.getByNomeTime = async (TimeAtual) => {
+    const res = await Jogador
+    .find({
         NomeTime: TimeAtual, },
         'NomeJogador TimeAtual VezesTop30 Instagram Twitter Twitch'
     );
+    return res;
 }
 
-exports.create = (data) => {
+exports.create = async (data) => {
     var jogador = new Jogador(data);
-    return jogador.save();
+    await jogador.save();
 }
 
-exports.update = (id, data) => {
-    return Jogador.findByIdAndUpdate(id, {
+exports.update = async (id, data) => {
+    await Jogador.findByIdAndUpdate(id, {
         $set: {
             NomeJogador: data.NomeJogador,
             TimeAtual: data.TimeAtual,
@@ -39,6 +42,6 @@ exports.update = (id, data) => {
     });
 }
 
-exports.delete = (id) => {
-    return  Jogador.findByIdAndDelete(id);
+exports.delete = async (id) => {
+    await Jogador.findByIdAndDelete(id);
 }
