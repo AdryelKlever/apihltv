@@ -13,6 +13,7 @@ mongoose.connect('mongodb+srv://hltv:hltv@cluster0.oucj3.mongodb.net/myFirstData
 
 /* ==> MODELS <== */
 const Jogador = require('./models/jogador');
+const Usuario = require( './models/usuario');
 const Noticia = require('./models/noticia');
 /* ==> MODELS <== */
 
